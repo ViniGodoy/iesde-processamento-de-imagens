@@ -31,6 +31,7 @@ public class Vector3 implements Cloneable {
         this.z = z;
         return this;
     }
+
     public Vector3 set(Vector3 other) {
         return set(other.x, other.y, other.z);
     }
@@ -119,6 +120,10 @@ public class Vector3 implements Cloneable {
         y = Util.clamp(y, min, max);
         z = Util.clamp(z, min, max);
         return this;
+    }
+
+    public Vector3 lerp(Vector3 v, float a) {
+        return mul(1 - a).add(mul(v, a));
     }
 
     public boolean equals(Vector3 o, float epsilon) {
@@ -243,10 +248,18 @@ public class Vector3 implements Cloneable {
     public static Vector3 normalize(Vector3 v) {
         return v.clone().normalize();
     }
+    public static Vector3 clamp(Vector3 v, float min, float max) {
+        return v.clone().clamp(min, max);
+    }
+    public static Vector3 lerp(Vector3 v1, Vector3 v2, float a) {
+        return v1.clone().lerp(v2, a);
+    }
     public static Vector3 pow(Vector3 v, float p) {
         return new Vector3((float) Math.pow(v.x, p), (float) Math.pow(v.y, p), (float) Math.pow(v.z, p));
     }
-
+    public static  Vector3 sqrt(Vector3 v) {
+        return new Vector3((float) Math.sqrt(v.x), (float) Math.sqrt(v.y), (float) Math.sqrt(v.y));
+    }
     public static Vector3 abs(Vector3 v) {
         return v.clone().abs();
     }
