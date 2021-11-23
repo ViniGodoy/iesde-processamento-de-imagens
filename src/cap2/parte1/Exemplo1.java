@@ -1,7 +1,5 @@
 package cap2.parte1;
 
-import java.awt.*;
-
 public class Exemplo1 {
     public static void main(String[] args) {
         int pixel = 0xFF3B9E03;

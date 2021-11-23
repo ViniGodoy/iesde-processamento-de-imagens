@@ -56,6 +56,7 @@ public class Util {
      */
     public static BufferedImage carregar(String name) {
         try {
+            if (!name.contains(".")) name += ".jpg";
             return ImageIO.read(new File(name));
         } catch (IOException e) {
             throw new RuntimeException(e);

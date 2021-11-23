@@ -1,12 +1,12 @@
 package cap3;
 
+import cap2.parte2.Vector3;
+
 import java.awt.image.BufferedImage;
 
-import cap2.parte2.Util;
-import cap2.parte2.Vector3;
-import static cap2.parte2.Vector3.*;
-
 import static cap2.parte2.ProcImagem.*;
+import static cap2.parte2.Vector3.add;
+import static cap2.parte2.Vector3.sqrt;
 import static cap3.Kernels.CRUZ;
 
 public class ProcImagem {

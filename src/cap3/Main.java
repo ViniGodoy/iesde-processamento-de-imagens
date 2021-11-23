@@ -1,21 +1,20 @@
 package cap3;
 
-import static cap3.Kernels.*;
-
 import static cap2.parte2.ProcImagem.*;
-import static cap3.ProcImagem.*;
 import static cap2.parte2.Util.*;
+import static cap3.Kernels.*;
+import static cap3.ProcImagem.*;
 
 public class Main {
     public static void main(String[] args) {
         setSavePath("imagens/out/cap3");
 
-        var retrato = carregar("imagens/retrato.jpg");
+        var retrato = carregar("imagens/retrato");
         var cinza = escalaDeCinza(retrato);
         salvar("retrato-cinza", cinza);
 
         //Figura 9: Suavização
-        var ruido = carregar("imagens/ruido.jpg");
+        var ruido = carregar("imagens/ruido");
         salvar("f9-suavizacao-gauss", convolucao(ruido, SUAVIZACAO_GAUSS, 5));
         //Figura 11: Bordas
 
@@ -28,12 +27,12 @@ public class Main {
         salvar("f14-retrato-sobel-gy", negativo(convolucao(cinza, BORDAS_SOBEL_GY)));
         salvar("f14-retrato-sobel", negativo(sobel(cinza)));
 
-        var ursinha = carregar("imagens/ursinha.jpg");
+        var ursinha = carregar("imagens/ursinha");
         salvar("f17-ursinha-nitidez", convolucao(ursinha, NITIDEZ));
 
 
         //Figura 20: Erosão e dilatação
-        var renata = escalaDeCinza(carregar("imagens/renata.jpg"));
+        var renata = escalaDeCinza(carregar("imagens/renata"));
         var linhas = limiarizacao(sobel(renata), 60);
         salvar("f20-renata-original", linhas);
         salvar("f20-renata-erosao", erodir(linhas, CRUZ));
@@ -51,7 +50,7 @@ public class Main {
         salvar("f21-renata-dilatada-bordas", subtrair(dilatada, renata));
 
         //Figura 24: Limiarização do carro
-        var carro = escalaDeCinza(carregar("imagens/carro.jpg"));
+        var carro = escalaDeCinza(carregar("imagens/carro"));
         var limiarCarro = limiarizacao(carro, 200);
         salvar("f24-carro-cinza", carro);
         salvar("f24-carro-limiar", limiarCarro);
@@ -68,7 +67,7 @@ public class Main {
         salvar("f27-carro-reconstruido", reconstruir(carroAberto, limiarCarro));
 
         //Atividade 1:
-        renata = carregar("imagens/renata.jpg");
+        renata = carregar("imagens/renata");
         salvar("f28-alto_relevo", convolucao(renata, ALTO_RELEVO));
     }
 

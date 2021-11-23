@@ -1,13 +1,13 @@
 package cap2.parte2;
 
-import static cap2.parte2.Util.*;
 import static cap2.parte2.ProcImagem.*;
+import static cap2.parte2.Util.*;
 
 public class Main {
     public static void main(String[] args) {
         setSavePath("imagens/out/cap2");
         //Figura 4: Conversão para escala de cinza
-        var retrato = carregar("imagens/retrato.jpg");
+        var retrato = carregar("imagens/retrato");
         salvar("f4-retrato-cinza-media", escalaDeCinzaMedia(retrato));
         salvar("f4-retrato-cinza-rec601", escalaDeCinza(retrato));
 
@@ -21,7 +21,7 @@ public class Main {
         salvar("f5-retrato-cinza-b", canalAzul(retrato, false));
 
         //Figura 6: Limiarização / binarização / thresholding
-        var renata = carregar("imagens/renata.jpg");
+        var renata = carregar("imagens/renata");
         var cinza = escalaDeCinza(renata);
         salvar("f6-renata-limiar-70", limiarizacao(cinza, 70));
         salvar("f6-renata-limiar-100", limiarizacao(cinza, 100));
@@ -41,15 +41,15 @@ public class Main {
         salvar("f10-renata-negativo", negativo(renata));
 
         //Figura 11: Detecção de movimento (subtração)
-        var pets1 = escalaDeCinza(carregar("imagens/pets1.jpg"));
-        var pets2 = escalaDeCinza(carregar("imagens/pets2.jpg"));
+        var pets1 = escalaDeCinza(carregar("imagens/pets1"));
+        var pets2 = escalaDeCinza(carregar("imagens/pets2"));
         var subtracao = subtrair(pets2, pets1);
         salvar("f11-pets-subtracao", negativo(subtracao));
         salvar("f11-pets-limiar", limiarizacao(subtracao, 18));
 
 
         //Figura 12: Mistura (alpha blending)
-        var img2 = carregar("imagens/ursinha.jpg");
+        var img2 = carregar("imagens/ursinha");
         salvar("f12-renata-mistura-0", misturar(img2, renata, 0f));
         salvar("f12-renata-mistura-25", misturar(img2, renata, 0.25f));
         salvar("f12-renata-mistura-50", misturar(img2, renata, 0.50f));
@@ -57,12 +57,12 @@ public class Main {
         salvar("f12-renata-mistura-100", misturar(img2, renata, 1f));
 
         //Figura 13: Soma de imagens
-        var lampada1 = carregar("imagens/lampada.jpg");
-        var lampada2 = carregar("imagens/lampada_desfoque.jpg");
+        var lampada1 = carregar("imagens/lampada");
+        var lampada2 = carregar("imagens/lampada_desfoque");
         salvar("f13-lampada-soma", somar(lampada1, lampada2));
 
         //Figura 14: Cinza com marcador
-        var marcador = carregar("imagens/marcador.jpg");
+        var marcador = carregar("imagens/marcador");
         salvar("f14-cinza-com-marcador", escalaDeCinzaComMarcador(img2, marcador));
 
         //Atividade 1: Espelhar
@@ -72,5 +72,6 @@ public class Main {
 
         //Atividade 2: Separar - gera o marcador para as áreas escuras da imagem
         salvar("f16-separar", marcarSe(img2, p -> p.dot(REC601) <= 0.15));
+
     }
 }

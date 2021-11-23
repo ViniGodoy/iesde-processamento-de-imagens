@@ -2,7 +2,8 @@ package cap2.parte2;
 
 import java.util.Objects;
 
-import static cap2.parte2.Util.*;
+import static cap2.parte2.Util.EPSILON;
+import static cap2.parte2.Util.floatEquals;
 
 public class Vector3 implements Cloneable {
     public float x;

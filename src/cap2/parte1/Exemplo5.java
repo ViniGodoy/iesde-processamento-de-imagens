@@ -1,11 +1,12 @@
 package cap2.parte1;
 
+import cap1.Vector3;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.function.UnaryOperator;
-import cap1.Vector3;
 
 public class Exemplo5 {
     public int clamp(float v) {

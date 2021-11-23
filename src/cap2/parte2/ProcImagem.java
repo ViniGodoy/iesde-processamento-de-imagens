@@ -2,12 +2,11 @@ package cap2.parte2;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-
 import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
-import static cap2.parte2.Util.*;
+import static cap2.parte2.Util.clamp;
 import static cap2.parte2.Vector3.*;
 
 public class ProcImagem {
