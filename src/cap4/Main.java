@@ -115,5 +115,9 @@ public class Main {
         salvar("fig20-alice-matiz-090", deslocarMatiz(alice, 90));
         salvar("fig20-alice-matiz-180", deslocarMatiz(alice, 180));
         salvar("fig20-alice-matiz-270", deslocarMatiz(alice, 270));
+
+        //Letra d.
+        salvar("fig21-alice-8-quant", quantizacao(alice, Palhetas.OITO_SOLIDAS));
+        salvar("fig21-alice-8-dither", dither(alice, Palhetas.OITO_SOLIDAS));
     }
 }
