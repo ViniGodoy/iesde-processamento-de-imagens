@@ -32,6 +32,10 @@ public class ProcImagem {
         return new Vector3(c.getRed(), c.getGreen(), c.getBlue()).div(255);
     }
 
+    public static Vector3 RGBtoVec3(int r, int g, int b) {
+        return new Vector3(r, g, b).div(255);
+    }
+
     public static BufferedImage processar(BufferedImage img, UnaryOperator<Vector3> op) {
         var out = new BufferedImage(img.getWidth(), img.getHeight(),
                 BufferedImage.TYPE_INT_RGB);
