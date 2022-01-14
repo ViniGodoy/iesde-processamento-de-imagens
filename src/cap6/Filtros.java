@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static cap2.parte2.ProcImagem.processar;
-import static cap2.parte2.Util.*;
 import static org.opencv.imgcodecs.Imgcodecs.*;
 import static org.opencv.imgproc.Imgproc.*;
 import static org.opencv.core.Core.*;
@@ -18,11 +16,6 @@ public class Filtros {
     }
 
     public static void main(String[] args) {
-        setSavePath("./imagens/out/cap6");
-        var m = carregar("./imagens/mariana.jpg");
-        var bc = processar(m, p -> p.mul(0.35f).add(0.65f));
-        salvar("mariana_baixo", bc);
-
         //Limiarização
         var renata = imread("./imagens/renata.jpg");
         var cinza = new Mat();
