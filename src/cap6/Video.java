@@ -13,7 +13,7 @@ public class Video {
     public static void main(String[] args) {
         var video = new VideoCapture();
         //Troque o nome do arquivo por 0 para usar a camera
-        video.open("./imagens/video.mp4");
+        video.open("./imagens/in/video.mp4");
 
         if (!video.isOpened())
             throw new IllegalStateException("Não foi possível iniciar o vídeo!");

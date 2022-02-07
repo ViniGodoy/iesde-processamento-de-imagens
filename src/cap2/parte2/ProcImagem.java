@@ -50,16 +50,16 @@ public class ProcImagem {
         return out;
     }
 
-    public static BufferedImage processarComMarcador(
-            BufferedImage img, BufferedImage marcador, UnaryOperator<Vector3> op)
+    public static BufferedImage processarComMascara(
+            BufferedImage img, BufferedImage mascara, UnaryOperator<Vector3> op)
     {
-        var width = Math.min(img.getWidth(), marcador.getWidth());
-        var height = Math.min(img.getHeight(), marcador.getHeight());
+        var width = Math.min(img.getWidth(), mascara.getWidth());
+        var height = Math.min(img.getHeight(), mascara.getHeight());
 
         var out = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         for (var y = 0; y < img.getHeight(); y++) {
             for (var x = 0; x < img.getWidth(); x++) {
-                var a = RGBtoVec3(marcador.getRGB(x,y)).x;
+                var a = RGBtoVec3(mascara.getRGB(x,y)).x;
 
                 if (a == 0) {
                     out.setRGB(x, y, img.getRGB(x, y));
@@ -108,10 +108,10 @@ public class ProcImagem {
     }
 
     public static BufferedImage copiarSe(
-        BufferedImage img, boolean marcador, Predicate<Vector3> criterio)
+        BufferedImage img, boolean binario, Predicate<Vector3> criterio)
     {
         return processar(img, p -> criterio.test(p) ?
-                (marcador ? new Vector3(1) : p) : new Vector3());
+                (binario ? new Vector3(1) : p) : new Vector3());
     }
 
     public static BufferedImage copiarSe(BufferedImage img, Predicate<Vector3> criterio) {
@@ -134,8 +134,8 @@ public class ProcImagem {
         return processar(img, p -> new Vector3(p.dot(REC601)));
     }
 
-    public static BufferedImage escalaDeCinzaComMarcador(BufferedImage img, BufferedImage marcador) {
-        return processarComMarcador(img, marcador, p -> new Vector3(p.dot(REC601)));
+    public static BufferedImage escalaDeCinzaComMascara(BufferedImage img, BufferedImage mascara) {
+        return processarComMascara(img, mascara, p -> new Vector3(p.dot(REC601)));
     }
 
 

@@ -9,48 +9,47 @@ public class Main {
     public static void main(String[] args) {
         setSavePath("imagens/out/cap3");
 
-        var retrato = carregar("imagens/retrato");
-        var cinza = escalaDeCinza(retrato);
-        salvar("retrato-cinza", cinza);
-
         //Figura 9: Suavização
-        var ruido = carregar("imagens/ruido");
+        var ruido = carregar("ruido");
         salvar("f9-suavizacao-gauss", convolucao(ruido, SUAVIZACAO_GAUSS, 5));
         //Figura 11: Bordas
 
+        var lagarto = carregar("lagarto");
+        var cinza = escalaDeCinza(lagarto);
+        salvar("lagarto-cinza", cinza);
+
         var laplace = convolucao(cinza, BORDAS_LAPLACE);
-        salvar( "f12-retrato-laplace", negativo(laplace));
-        salvar("f12-retrato-laplace-limiar", negativo(limiarizacao(laplace, 15)));
+        salvar( "f12-laplace", negativo(laplace));
+        salvar("f12-laplace-limiar", negativo(limiarizacao(laplace, 15)));
 
         //Figura 12: Sobel
-        salvar("f14-retrato-sobel-gx", negativo(convolucao(cinza, BORDAS_SOBEL_GX)));
-        salvar("f14-retrato-sobel-gy", negativo(convolucao(cinza, BORDAS_SOBEL_GY)));
-        salvar("f14-retrato-sobel", negativo(sobel(cinza)));
+        var linhas = sobel(cinza);
+        salvar("f14-sobel-gx", negativo(convolucao(cinza, BORDAS_SOBEL_GX)));
+        salvar("f14-sobel-gy", negativo(convolucao(cinza, BORDAS_SOBEL_GY)));
+        salvar("f14-sobel", negativo(linhas));
 
-        var ursinha = carregar("imagens/ursinha");
-        salvar("f17-ursinha-nitidez", convolucao(ursinha, NITIDEZ));
+        var gatinho = carregar("gatinho2");
+        salvar("f17-nitidez", convolucao(gatinho, NITIDEZ));
 
 
         //Figura 20: Erosão e dilatação
-        var renata = escalaDeCinza(carregar("imagens/renata"));
-        var linhas = limiarizacao(sobel(renata), 60);
-        salvar("f20-renata-original", linhas);
-        salvar("f20-renata-erosao", erodir(linhas, CRUZ));
-        salvar("f20-renata-dilatar", dilatar(linhas, CRUZ));
+        salvar("f20-original", linhas);
+        salvar("f20-erosao", erodir(linhas, CRUZ));
+        salvar("f20-dilatar", dilatar(linhas, CRUZ));
 
         //Figura 21: Bordas com erosão, dilatação e subtração
-        var erodida = erodir(renata, 4, CRUZ);
-        salvar("f21-renata-original", renata);
-        salvar("f21-renata-erodida", erodida);
-        salvar("f21-renata-erodida-bordas", subtrair(renata, erodida));
+        var erodida = erodir(cinza, 4, CRUZ);
+        salvar("f21-original", cinza);
+        salvar("f21-erodida", erodida);
+        salvar("f21-erodida-bordas", subtrair(cinza, erodida));
 
         //Figura 23
-        var dilatada = dilatar(renata, 4, CRUZ);
-        salvar("f21-renata-dilatada", dilatada);
-        salvar("f21-renata-dilatada-bordas", subtrair(dilatada, renata));
+        var dilatada = dilatar(cinza, 4, CRUZ);
+        salvar("f21-dilatada", dilatada);
+        salvar("f21-dilatada-bordas", subtrair(dilatada, cinza));
 
         //Figura 24: Limiarização do carro
-        var carro = escalaDeCinza(carregar("imagens/carro"));
+        var carro = escalaDeCinza(carregar("carro"));
         var limiarCarro = limiarizacao(carro, 200);
         salvar("f24-carro-cinza", carro);
         salvar("f24-carro-limiar", limiarCarro);
@@ -67,8 +66,8 @@ public class Main {
         salvar("f27-carro-reconstruido", reconstruir(carroAberto, limiarCarro));
 
         //Atividade 1:
-        renata = carregar("imagens/renata");
-        salvar("f28-alto_relevo", convolucao(renata, ALTO_RELEVO));
+        var flores = carregar("flores");
+        salvar("f28-alto_relevo", convolucao(flores, ALTO_RELEVO));
     }
 
 

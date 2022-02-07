@@ -6,10 +6,15 @@ import java.io.File;
 import java.io.IOException;
 
 public class Util {
-    private static File savePath = new File(".");
+    private static File savePath = new File("./imagens/out");
+    private static File loadPath = new File("./imagens/in");
 
     public static void setSavePath(String savePath) {
         Util.savePath = savePath == null ? new File(".") : new File(savePath);
+    }
+
+    public static void setLoadPath(String loadPath) {
+        Util.loadPath = loadPath == null ? new File(".") : new File(loadPath);
     }
 
     public static final float EPSILON = 1.0f / 256.0f;
@@ -57,7 +62,7 @@ public class Util {
     public static BufferedImage carregar(String name) {
         try {
             if (!name.contains(".")) name += ".jpg";
-            return ImageIO.read(new File(name));
+            return ImageIO.read(new File(loadPath, name));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

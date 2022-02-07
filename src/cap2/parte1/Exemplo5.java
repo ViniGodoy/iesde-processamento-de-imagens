@@ -42,12 +42,13 @@ public class Exemplo5 {
     }
 
     public void run() throws Exception {
-        var img = ImageIO.read(new File("imagens/renata.jpg"));
-        ImageIO.write(brilho(img, 1.5f), "jpg", new File("bright.jpg"));
-        ImageIO.write(brilho(img, 0.5f), "jpg", new File("dark.jpg"));
+        System.out.println(new File(".").getAbsolutePath());
+        var img = ImageIO.read(new File("./imagens/in/peixes.jpg"));
+        ImageIO.write(brilho(img, 1.5f), "jpg", new File("f3-brilho-5.jpg"));
+        ImageIO.write(brilho(img, 0.5f), "jpg", new File("f3-brilho-15.jpg"));
     }
 
     public static void main(String[] args) throws Exception {
-        new Exemplo3().run();
+        new Exemplo5().run();
     }
 }

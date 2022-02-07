@@ -12,17 +12,17 @@ public class Main {
     public static void main(String[] args) {
         setSavePath("imagens/out/cap5");
 
-        var moedas = escalaDeCinza(carregar("imagens/moedas"));
+        var moedas = escalaDeCinza(carregar("moedas"));
         moedas = negativo(limiarizacao(moedas, otsu(moedas)));
-        salvar("fig1_moedas_limiar", moedas);
+        salvar("f1_moedas_limiar", moedas);
 
         moedas = fechamento(moedas,3,  Kernels.CRUZ);
-        salvar("fig2_moedas_fechamento", moedas);
+        salvar("f2_moedas_fechamento", moedas);
 
         var resultado = segmentosConectados(moedas);
         var img = desenharSegmentos(resultado);
 
-        salvar("fig3_moedas_conectados", img);
+        salvar("f3_moedas_conectados", img);
 
         //Atividade 1
         var resultadoEx = segmentosConectadosEx(moedas);
@@ -32,7 +32,7 @@ public class Main {
             System.out.println("  " + s);
         }
 
-        var campo = carregar("imagens/campo");
+        var campo = carregar("campo");
         var knn = new Knn();
         //Gramado
         knn.adicionarAmostra(1, RGBtoVec3(90, 130, 63));

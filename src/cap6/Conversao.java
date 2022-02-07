@@ -12,7 +12,7 @@ public class Conversao {
     }
 
     public static void main(String[] args) {
-        var img = imread("./imagens/gemeas.jpg");
+        var img = imread("./imagens/in/flores.jpg");
         var cinza = new Mat();
 
         cvtColor(img, cinza, COLOR_BGR2GRAY);
@@ -21,6 +21,6 @@ public class Conversao {
         waitKey(0);
         destroyAllWindows();
 
-        imwrite("./imagens/out/cap6/gemeasGray.jpg", cinza);
+        imwrite("./imagens/out/cap6/flores.jpg", cinza);
     }
 }

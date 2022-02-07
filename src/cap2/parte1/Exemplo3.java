@@ -29,7 +29,7 @@ public class Exemplo3 {
     }
 
     public void run() throws Exception {
-        var img = ImageIO.read(new File("imagens/renata.jpg"));
+        var img = ImageIO.read(new File("./imagens/in/peixes.jpg"));
         ImageIO.write(brilho(img, 1.5f), "jpg", new File("bright.jpg"));
         ImageIO.write(brilho(img, 0.5f), "jpg", new File("dark.jpg"));
     }

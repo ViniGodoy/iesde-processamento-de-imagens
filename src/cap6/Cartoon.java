@@ -19,7 +19,7 @@ public class Cartoon {
         var video = new VideoCapture();
 
         //Troque o nome do arquivo por 0 para usar a camera
-        video.open("./imagens/video.mp4");
+        video.open("./imagens/in/video.mp4");
 
         if (!video.isOpened())
             throw new IllegalStateException("Não foi possível iniciar o vídeo!");
@@ -29,7 +29,7 @@ public class Cartoon {
         while (video.read(quadro)) {
             //Suavização do quadro, gerando uma imagem mais simples
             var simples = new Mat();
-            blur(quadro, simples, new Size(7,7));
+            blur(quadro, simples, new Size(6,6));
 
             //Deteção das bordas
             var bordas = new Mat();
@@ -44,15 +44,15 @@ public class Cartoon {
 
             //Exibe o resultado.
             imshow("Resultado", cartoon);
-            if (waitKey(1) == 'X') break;
+            if (waitKey(33) == 'X') break;
 
-            //Salva o quadro em 14s para gerar as imagens presentes no capítulo
-            if (q == 14*30) {
-                imwrite("./imagens/out/cap6/fig7_quadro.jpg", quadro);
-                imwrite("./imagens/out/cap6/fig7_simples.jpg", simples);
-                imwrite("./imagens/out/cap6/fig8_bordas.jpg", bordas);
-                imwrite("./imagens/out/cap6/fig8_canny.jpg", canny);
-                imwrite("./imagens/out/cap6/fig8_cartoon.jpg", cartoon);
+            //Salva o quadro em 3s para gerar as imagens presentes no capítulo
+            if (q == 3*30) {
+                imwrite("./imagens/out/cap6/f7_quadro.jpg", quadro);
+                imwrite("./imagens/out/cap6/f7_simples.jpg", simples);
+                imwrite("./imagens/out/cap6/f8_bordas.jpg", bordas);
+                imwrite("./imagens/out/cap6/f8_canny.jpg", canny);
+                imwrite("./imagens/out/cap6/f8_cartoon.jpg", cartoon);
             }
             q++;
         }

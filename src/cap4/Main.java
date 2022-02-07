@@ -55,15 +55,17 @@ public class Main {
 
     public static void main(String[] args) {
         setSavePath("imagens/out/cap4");
-        var gemeas = carregar("imagens/gemeas");
-        var gemeasCinza = escalaDeCinza(gemeas);
-        var gemeasBaixoContraste = processar(gemeasCinza, p -> p.mul(0.3f).add(0.6f));
-        salvar("fig1-gemeas-cinza", gemeasCinza);
-        salvar("fig1-gemeas-baixo", gemeasBaixoContraste);
-        var gemeasBaixoHistograma = calcularHistograma(gemeasBaixoContraste);
-        salvar("fig1-gemeas-cinza-histograma", desenharHistograma(gemeasCinza));
-        salvar("fig1-gemeas-baixo-histograma", desenharHistograma(gemeasBaixoHistograma));
-        salvar("fig2-gemeas-baixo-histograma", desenharHistogramas(gemeasBaixoHistograma));
+
+        var flores = carregar("flores");
+        var floresCinza = escalaDeCinza(flores);
+        var floresBaixoContraste = processar(floresCinza, p -> p.mul(0.3f).add(0.6f));
+        salvar("f1-cinza", floresCinza);
+        salvar("f1-baixo", floresBaixoContraste);
+
+        var floresBaixoHistograma = calcularHistograma(floresBaixoContraste);
+        salvar("f1-cinza-histograma", desenharHistograma(floresCinza));
+        salvar("f1-baixo-histograma", desenharHistograma(floresBaixoHistograma));
+        salvar("f2-baixo-histograma", desenharHistogramas(floresBaixoHistograma));
 
         var figura3 = criarFigura3();
         salvar("fig3-boneco", "png", figura3);
@@ -71,53 +73,56 @@ public class Main {
         var histograma = calcularHistograma(figura3);
         salvar("fig3-histograma", desenharHistogramas(histograma));
         salvar("fig4-equalizada", "png", equalizar(figura3));
-        var gemeasEqualizada = equalizar(gemeasBaixoContraste);
-        salvar("fig5-equalizada", gemeasEqualizada);
-        salvar("fig5-equalizada-histograma", desenharHistogramas(gemeasEqualizada));
+
+        var floresEqualizada = equalizar(floresBaixoContraste);
+        salvar("f5-equalizada", floresEqualizada);
+        salvar("f5-equalizada-histograma", desenharHistogramas(floresEqualizada));
 
         var figura6 = criarFigura6();
         var histFig6 = calcularHistograma(figura6);
-        salvar("fig6-boneco", "png", figura6);
-        salvar("fig6-histograma", desenharHistogramas(figura6));
+        salvar("f6-boneco", "png", figura6);
+        salvar("f6-histograma", desenharHistogramas(figura6));
 
-        var renataCinza = escalaDeCinza(carregar("imagens/renata"));
-        int limiar = otsu(renataCinza);
-        salvar("fig8-renata-limiar-" + limiar, limiarizacao(renataCinza, limiar));
+        var casteloCinza = escalaDeCinza(carregar("castelo"));
+        int limiar = otsu(casteloCinza);
+        salvar("f8-castelo-limiar-" + limiar, limiarizacao(casteloCinza, limiar));
 
-        limiar = otsu(gemeasCinza);
-        salvar("fig8-gemeas-limiar-" + limiar, limiarizacao(gemeasCinza, limiar));
+        var peixesCinza = escalaDeCinza(carregar("peixes"));
+        limiar = otsu(peixesCinza);
+        salvar("f8-peixes-limiar-" + limiar, limiarizacao(peixesCinza, limiar));
 
-        var carroCinza = escalaDeCinza(carregar("imagens/carro"));
+        var carroCinza = escalaDeCinza(carregar("carro"));
         limiar = otsu(carroCinza);
-        salvar("fig8-carro-limiar-" + limiar, limiarizacao(carroCinza, limiar));
+        salvar("f8-carro-limiar-" + limiar, limiarizacao(carroCinza, limiar));
 
-        var alice = carregar("imagens/alice");
-        salvar("fig15-alice-12bits", quantizacao(alice, Palhetas.R4G4B4));
-        salvar("fig15-alice-8bits", quantizacao(alice, Palhetas.R3G3B2));
-        salvar("fig15-alice-mac", quantizacao(alice, Palhetas.MAC));
+        var cachorrinho = carregar("cachorrinho");
+        salvar("f15-12bits", quantizacao(cachorrinho, Palhetas.R4G4B4));
+        salvar("f15-8bits", quantizacao(cachorrinho, Palhetas.R3G3B2));
+        salvar("f15-mac", quantizacao(cachorrinho, Palhetas.MAC));
 
-        salvar("fig16-alice-mac", dither(alice, Palhetas.MAC));
+        salvar("f16-mac-dither", dither(cachorrinho, Palhetas.MAC));
 
-        salvar("fig17-renata-dither", dither(renataCinza, Palhetas.BINARIA));
-        salvar("fig17-gemeas-dither", dither(gemeasCinza, Palhetas.BINARIA));
-        salvar("fig17-carro-dither", dither(carroCinza, Palhetas.BINARIA));
+        salvar("f17-castelo-dither", dither(casteloCinza, Palhetas.BINARIA));
+        salvar("f17-flores-dither", dither(floresCinza, Palhetas.BINARIA));
+        salvar("f17-carro-dither", dither(carroCinza, Palhetas.BINARIA));
 
         //Atividade 2
         //Letra a. saturar
-        salvar("fig18-alice-saturar-1.5", saturar(alice, 1.5f));
-        salvar("fig18-alice-saturar-0.5", saturar(alice, 0.5f));
+        var peixes = carregar("peixes");
+        salvar("f18-saturar-1.5", saturar(peixes, 1.5f));
+        salvar("f18-saturar-0.5", saturar(peixes, 0.5f));
 
         //Letra b. iluminar
-        salvar("fig19-alice-iluminar-1.5", iluminar(alice, 1.5f));
-        salvar("fig19-alice-iluminar-0.5", iluminar(alice, 0.5f));
+        salvar("f19-iluminar-1.5", iluminar(peixes, 1.5f));
+        salvar("f19-iluminar-0.5", iluminar(peixes, 0.5f));
 
         //Letra c. deslocar
-        salvar("fig20-alice-matiz-090", deslocarMatiz(alice, 90));
-        salvar("fig20-alice-matiz-180", deslocarMatiz(alice, 180));
-        salvar("fig20-alice-matiz-270", deslocarMatiz(alice, 270));
+        salvar("f20-matiz-090", deslocarMatiz(peixes, 90));
+        salvar("f20-matiz-180", deslocarMatiz(peixes, 180));
+        salvar("f20-matiz-270", deslocarMatiz(peixes, 270));
 
         //Letra d.
-        salvar("fig21-alice-8-quant", quantizacao(alice, Palhetas.OITO_SOLIDAS));
-        salvar("fig21-alice-8-dither", dither(alice, Palhetas.OITO_SOLIDAS));
+        salvar("f21-8-quant", quantizacao(peixes, Palhetas.OITO_SOLIDAS));
+        salvar("f21-8-dither", dither(peixes, Palhetas.OITO_SOLIDAS));
     }
 }

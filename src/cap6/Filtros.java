@@ -17,24 +17,24 @@ public class Filtros {
 
     public static void main(String[] args) {
         //Limiarização
-        var renata = imread("./imagens/renata.jpg");
+        var renata = imread("./imagens/in/castelo.jpg");
         var cinza = new Mat();
         cvtColor(renata, cinza, COLOR_BGR2GRAY);
-        imwrite("./imagens/out/cap6/fig1_renata_cinza.jpg", cinza);
+        imwrite("./imagens/out/cap6/f1_cinza.jpg", cinza);
 
         var limiar = new Mat();
-        threshold(cinza, limiar, 90, 255, THRESH_TOZERO);
-        imwrite("./imagens/out/cap6/fig1_renata_limiar_90.jpg", limiar);
+        threshold(cinza, limiar, 130, 255, THRESH_TOZERO);
+        imwrite("./imagens/out/cap6/f1_limiar_130.jpg", limiar);
 
         var t = threshold(cinza, limiar, 0, 255, THRESH_BINARY + THRESH_OTSU);
-        imwrite("./imagens/out/cap6/fig1_renata_limiar_otsu.jpg", limiar);
+        imwrite("./imagens/out/cap6/f1_limiar_otsu.jpg", limiar);
         System.out.println("Treshold utilizado: " + t);
 
         adaptiveThreshold(cinza, limiar, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY, 11, 4);
-        imwrite("./imagens/out/cap6/fig2_renata_limiar_adaptativo.jpg", limiar);
+        imwrite("./imagens/out/cap6/f2_limiar_adaptativo.jpg", limiar);
 
         //Morfologia matemática
-        var gemeas = imread("./imagens/gemeas.jpg");
+        var gemeas = imread("./imagens/in/lagarto.jpg");
 
         var dilatada = new Mat();
         var erodida = new Mat();
@@ -44,14 +44,14 @@ public class Filtros {
         morphologyEx(gemeas, dilatada, MORPH_DILATE, cruz, centro, 3);
         morphologyEx(gemeas, erodida, MORPH_ERODE, cruz, centro, 3);
 
-        imwrite("./imagens/out/cap6/fig3_gemeas_dilatada.jpg", dilatada);
-        imwrite("./imagens/out/cap6/fig3_gemeas_erodida.jpg", erodida);
+        imwrite("./imagens/out/cap6/f3_dilatada.jpg", dilatada);
+        imwrite("./imagens/out/cap6/f3_erodida.jpg", erodida);
 
         //Histograma
-        var mariana = imread("./imagens/mariana_baixo.jpg");
+        var frutas = imread("./imagens/in/frutas2.jpg");
         //1. Converte para HSV
         var hsv = new Mat();
-        cvtColor(mariana,hsv,COLOR_BGR2HSV);
+        cvtColor(frutas,hsv,COLOR_BGR2HSV);
         //2. Separa os canais
         var canais = new ArrayList<Mat>();
         split(hsv, canais);
@@ -62,11 +62,11 @@ public class Filtros {
         //5. Gera a imagem equalizada em BGR
         var equalizada = new Mat();
         cvtColor(hsv,equalizada,COLOR_HSV2BGR);
-        imwrite("./imagens/out/cap6/fig4_mariana_equalizada.jpg", equalizada);
+        imwrite("./imagens/out/cap6/f4_equalizada.jpg", equalizada);
 
         //Calculo do histograma
         Mat histograma = new Mat();
-        calcHist(List.of(mariana),
+        calcHist(List.of(frutas),
             new MatOfInt(0),
             new Mat(),
             histograma,
@@ -76,7 +76,7 @@ public class Filtros {
         System.out.println(histograma.dump());
 
         //Segmentos conectados
-        var imagem = imread("./imagens/moedas.jpg");
+        var imagem = imread("./imagens/in/moedas.jpg");
 
         //Simplifica a imagem com o filtro de Canny
         var canny = new Mat();
@@ -123,14 +123,14 @@ public class Filtros {
             }
         }
 
-        imwrite("./imagens/out/cap6/fig5_moedas_canny.jpg", canny);
-        imwrite("./imagens/out/cap6/fig5_moedas_canny_fechado.jpg", fechado);
-        imwrite("./imagens/out/cap6/fig6_moedas_desenho.jpg", desenho);
+        imwrite("./imagens/out/cap6/f5_moedas_canny.jpg", canny);
+        imwrite("./imagens/out/cap6/f5_moedas_canny_fechado.jpg", fechado);
+        imwrite("./imagens/out/cap6/f6_moedas_desenho.jpg", desenho);
 
         //Atividade 2
         //1. Converte para YCrCb
         var yCrCb = new Mat();
-        cvtColor(mariana,yCrCb,COLOR_BGR2YCrCb);
+        cvtColor(frutas,yCrCb,COLOR_BGR2YCrCb);
         //2. Separa os canais
         canais = new ArrayList<Mat>();
         split(yCrCb, canais);
@@ -141,6 +141,6 @@ public class Filtros {
         //5. Gera a imagem equalizada em BGR
         equalizada = new Mat();
         cvtColor(yCrCb,equalizada,COLOR_YCrCb2BGR);
-        imwrite("./imagens/out/cap6/at2_mariana_equalizada_yCrBb.jpg", equalizada);
+        imwrite("./imagens/out/cap6/at2_equalizada_yCrBb.jpg", equalizada);
     }
 }
