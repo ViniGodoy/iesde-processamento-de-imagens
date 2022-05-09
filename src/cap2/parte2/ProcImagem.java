@@ -39,8 +39,8 @@ public class ProcImagem {
     public static BufferedImage processar(BufferedImage img, UnaryOperator<Vector3> op) {
         var out = new BufferedImage(img.getWidth(), img.getHeight(),
                 BufferedImage.TYPE_INT_RGB);
-        for (int y = 0; y < img.getHeight(); y++) {
-            for (int x = 0; x < img.getWidth(); x++) {
+        for (var y = 0; y < img.getHeight(); y++) {
+            for (var x = 0; x < img.getWidth(); x++) {
                 var pixelIn = RGBtoVec3(img.getRGB(x, y));
                 var pixelOut = op.apply(pixelIn);
                 out.setRGB(x, y, vec3ToRGB(pixelOut));
@@ -78,8 +78,8 @@ public class ProcImagem {
     public static BufferedImage processar(BufferedImage img1,
         BufferedImage img2, BinaryOperator<Vector3> op)
     {
-        int width = Math.min(img1.getWidth(), img2.getWidth());
-        int height = Math.min(img1.getHeight(), img2.getHeight());
+        var width = Math.min(img1.getWidth(), img2.getWidth());
+        var height = Math.min(img1.getHeight(), img2.getHeight());
 
         var out = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         for (var y = 0; y < height; y++) {
@@ -96,8 +96,8 @@ public class ProcImagem {
     public static BufferedImage espelhar(BufferedImage img, boolean horizontal, boolean vertical) {
         var out = new BufferedImage(img.getWidth(), img.getHeight(),
                 BufferedImage.TYPE_INT_RGB);
-        for (int y = 0; y < img.getHeight(); y++) {
-            for (int x = 0; x < img.getWidth(); x++) {
+        for (var y = 0; y < img.getHeight(); y++) {
+            for (var x = 0; x < img.getWidth(); x++) {
                 var sx = horizontal ? (img.getWidth() - x - 1) : x;
                 var sy = vertical ? (img.getHeight() - y - 1) : y;
                 out.setRGB(x, y, img.getRGB(sx, sy));

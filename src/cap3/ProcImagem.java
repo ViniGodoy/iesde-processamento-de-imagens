@@ -35,7 +35,7 @@ public class ProcImagem {
         for (var y = 0; y < img.getHeight(); y++) {
             for (var x = 0; x < img.getWidth(); x++) {
                 //Valores de r, g e b finais
-                Vector3 outPixel = new Vector3();
+                var outPixel = new Vector3();
                 //Para cada pixel percorrido na imagem, precisamos percorrer os seus 9 vizinhos
                 //O peso desses vizinhos estão descritos no kernel, por isso, fazemos um for para percorre-lo
                 for (var ky = 0; ky < 3; ky++) {
@@ -189,7 +189,7 @@ public class ProcImagem {
 
                         //Obtem o tom de cinza do pixel
                         var pixel = RGBtoVec3(img.getRGB(px, py));
-                        float l = pixel.dot(REC601);
+                        var l = pixel.dot(REC601);
 
                         //Se ele for mais claro que o maior já encontrado, substitui
                         if (kernel[kx][ky] && l > max) {
@@ -215,8 +215,8 @@ public class ProcImagem {
      * @see Kernels
      */
     public static BufferedImage dilatar(BufferedImage img, int times, boolean[][] kernel) {
-        BufferedImage out = img;
-        for (int i = 0; i < times; i++) {
+        var out = img;
+        for (var i = 0; i < times; i++) {
             out = dilatar(out, kernel);
         }
         return out;

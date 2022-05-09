@@ -10,19 +10,19 @@ import static cap4.ProcImagem.*;
 
 public class Main {
     public static BufferedImage criarFigura3() {
-        int [][] pixels = {
-            {85, 82, 82, 82, 82, 82, 82, 85},
-            {82, 85, 85, 85, 85, 85, 85, 82},
-            {82, 85, 80, 85, 85, 80, 85, 82},
-            {82, 85, 85, 85, 85, 85, 85, 82},
-            {82, 85, 78, 85, 85, 85, 85, 82},
-            {82, 85, 85, 78, 78, 85, 85, 82},
-            {82, 82, 85, 85, 85, 85, 85, 85},
-            {85, 85, 82, 82, 82, 82, 82, 85},
+        var pixels = new int[][]{
+                {85, 82, 82, 82, 82, 82, 82, 85},
+                {82, 85, 85, 85, 85, 85, 85, 82},
+                {82, 85, 80, 85, 85, 80, 85, 82},
+                {82, 85, 85, 85, 85, 85, 85, 82},
+                {82, 85, 78, 85, 85, 85, 85, 82},
+                {82, 85, 85, 78, 78, 85, 85, 82},
+                {82, 82, 85, 85, 85, 85, 85, 85},
+                {85, 85, 82, 82, 82, 82, 82, 85},
         };
         var img = new BufferedImage(8,8, BufferedImage.TYPE_INT_RGB);
-        for (int y = 0; y < 8; y++) {
-            for (int x = 0; x < 8; x++) {
+        for (var y = 0; y < 8; y++) {
+            for (var x = 0; x < 8; x++) {
                 var c = pixels[y][x];
                 img.setRGB(x, y, new Color(c, c, c).getRGB());
             }
@@ -31,20 +31,20 @@ public class Main {
     }
 
     public static BufferedImage criarFigura6() {
-        int [][] pixels = {
-                {7,	5, 5, 5, 5, 5, 5, 7},
-                {4,	7, 7, 7, 7, 7, 7, 4},
-                {4,	7, 0, 7, 7, 0, 7, 4},
-                {6,	7, 7, 7, 7, 7, 7, 6},
-                {6,	7, 1, 7, 7, 7, 7, 6},
-                {4,	7, 7, 2, 2, 7, 7, 4},
-                {4,	4, 7, 7, 7, 7, 6, 4},
-                {7,	7, 4, 3, 3, 3, 4, 7}
+        var pixels = new int[][]{
+                {7, 5, 5, 5, 5, 5, 5, 7},
+                {4, 7, 7, 7, 7, 7, 7, 4},
+                {4, 7, 0, 7, 7, 0, 7, 4},
+                {6, 7, 7, 7, 7, 7, 7, 6},
+                {6, 7, 1, 7, 7, 7, 7, 6},
+                {4, 7, 7, 2, 2, 7, 7, 4},
+                {4, 4, 7, 7, 7, 7, 6, 4},
+                {7, 7, 4, 3, 3, 3, 4, 7}
         };
 
         var img = new BufferedImage(8,8, BufferedImage.TYPE_INT_RGB);
-        for (int y = 0; y < 8; y++) {
-            for (int x = 0; x < 8; x++) {
+        for (var y = 0; y < 8; y++) {
+            for (var x = 0; x < 8; x++) {
                 var c = (int)(pixels[y][x] * 250.0 / 7);
                 img.setRGB(x, y, new Color(c, c, c).getRGB());
             }
@@ -84,7 +84,7 @@ public class Main {
         salvar("f6-histograma", desenharHistogramas(figura6));
 
         var casteloCinza = escalaDeCinza(carregar("castelo"));
-        int limiar = otsu(casteloCinza);
+        var limiar = otsu(casteloCinza);
         salvar("f8-castelo-limiar-" + limiar, limiarizacao(casteloCinza, limiar));
 
         var peixesCinza = escalaDeCinza(carregar("peixes"));

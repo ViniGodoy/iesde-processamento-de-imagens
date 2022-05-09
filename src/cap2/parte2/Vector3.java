@@ -147,7 +147,7 @@ public class Vector3 implements Cloneable {
 
     @Override
     public int hashCode() {
-        float h = 1f / EPSILON;
+        var h = 1f / EPSILON;
         return Objects.hash((int) x * h, (int) y * h, (int) x * h);
     }
 

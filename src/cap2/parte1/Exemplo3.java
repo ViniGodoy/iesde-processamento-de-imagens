@@ -13,13 +13,13 @@ public class Exemplo3 {
     BufferedImage brilho(BufferedImage img, float valor) {
         var out = new BufferedImage(img.getWidth(), img.getHeight(),
                 BufferedImage.TYPE_INT_RGB);
-        for (int y = 0; y < img.getHeight(); y++) {
-            for (int x = 0; x < img.getWidth(); x++) {
+        for (var y = 0; y < img.getHeight(); y++) {
+            for (var x = 0; x < img.getWidth(); x++) {
                 var pixelIn = new Color(img.getRGB(x, y));
 
-                int r = (int)(pixelIn.getRed() * valor);
-                int g = (int)(pixelIn.getGreen() * valor);
-                int b = (int)(pixelIn.getBlue() * valor);
+                var r = (int)(pixelIn.getRed() * valor);
+                var g = (int)(pixelIn.getGreen() * valor);
+                var b = (int)(pixelIn.getBlue() * valor);
 
                 var pixelOut = new Color(clamp(r),clamp(g),clamp(b));
                 out.setRGB(x, y, pixelOut.getRGB());

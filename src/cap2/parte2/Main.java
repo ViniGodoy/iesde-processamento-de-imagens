@@ -33,8 +33,8 @@ public class Main {
 
         //Figura 9: Tinting
         var img1 = carregar("gatinho");
-        Vector3 amarelo = new Vector3(209, 182, 123).div(255);
-        Vector3 roxo = new Vector3(163, 109, 176).div(255);
+        var amarelo = new Vector3(209, 182, 123).div(255);
+        var roxo = new Vector3(163, 109, 176).div(255);
         salvar("f9-tint-amarelo", tingir(img1, amarelo));
         salvar("f9-tint-roxo", tingir(img1, roxo));
 

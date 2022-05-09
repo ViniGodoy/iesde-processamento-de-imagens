@@ -10,7 +10,7 @@ import java.util.function.UnaryOperator;
 
 public class Exemplo5 {
     public int clamp(float v) {
-        int value = (int) v;
+        var value = (int) v;
         return value < 0 ? 0 : (value > 255 ? 255 : value);
     }
 
@@ -26,8 +26,8 @@ public class Exemplo5 {
     BufferedImage processar(BufferedImage img, UnaryOperator<Vector3> op) {
         var out = new BufferedImage(img.getWidth(), img.getHeight(),
                 BufferedImage.TYPE_INT_RGB);
-        for (int y = 0; y < img.getHeight(); y++) {
-            for (int x = 0; x < img.getWidth(); x++) {
+        for (var y = 0; y < img.getHeight(); y++) {
+            for (var x = 0; x < img.getWidth(); x++) {
                 var pixelIn = RGBtoVec3(img.getRGB(x, y));
                 var pixelOut = op.apply(pixelIn);
                 out.setRGB(x, y, vec3ToRGB(pixelOut));

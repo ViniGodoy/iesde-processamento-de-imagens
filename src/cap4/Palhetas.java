@@ -37,10 +37,10 @@ public class Palhetas {
     private static int[] criarR4G4B4() {
         var rgb = new int[4096];
         var c = 0;
-        for (int r = 0; r < 16; r++) {
-            for (int g = 0; g < 16; g++) {
-                for (int b = 0; b < 16; b++) {
-                    float w4 = 255.0f / 15;
+        for (var r = 0; r < 16; r++) {
+            for (var g = 0; g < 16; g++) {
+                for (var b = 0; b < 16; b++) {
+                    var w4 = 255.0f / 15;
                     rgb[c++] = new Color(
                             (int)(r * w4),
                             (int)(g * w4),
@@ -55,11 +55,11 @@ public class Palhetas {
     private static int[] criarR3G3B2() {
         var rgb = new int[256];
         var c = 0;
-        for (int r = 0; r < 8; r++) {
-            for (int g = 0; g < 8; g++) {
-                for (int b = 0; b < 4; b++) {
-                    float w3 = 255.0f / 7;
-                    float w2 = 255.0f / 3;
+        for (var r = 0; r < 8; r++) {
+            for (var g = 0; g < 8; g++) {
+                for (var b = 0; b < 4; b++) {
+                    var w3 = 255.0f / 7;
+                    var w2 = 255.0f / 3;
                     rgb[c++] = new Color(
                             (int)(r * w3),
                             (int)(g * w3),

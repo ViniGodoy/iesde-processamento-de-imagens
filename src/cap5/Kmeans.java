@@ -141,7 +141,7 @@ public class Kmeans {
     }
 
     public int[][] classificar(BufferedImage img) {
-        int[][] mapa = new int[img.getWidth()][img.getHeight()];
+        var mapa = new int[img.getWidth()][img.getHeight()];
         for (var y = 0; y < img.getHeight(); y++) {
             for (var x = 0; x < img.getWidth(); x++) {
                 var pixel = RGBtoVec3(img.getRGB(x, y));

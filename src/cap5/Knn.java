@@ -29,8 +29,8 @@ public class Knn {
         }
         @Override
         public int compare(Amostra o1, Amostra o2) {
-            float d1 = sub(pixel, o1.elemento).sizeSqr();
-            float d2 = sub(pixel, o2.elemento).sizeSqr();
+            var d1 = sub(pixel, o1.elemento).sizeSqr();
+            var d2 = sub(pixel, o2.elemento).sizeSqr();
 
             if (d1 < d2) return -1;
             if (d1 > d2) return 1;
@@ -50,14 +50,14 @@ public class Knn {
 
         //Conta por classe até os k vizinhos
         var contagem = new HashMap<Integer, Integer>();
-        for (int i = 0; i < k; i++) {
-            int c = amostras.get(i).classe;
+        for (var i = 0; i < k; i++) {
+            var c = amostras.get(i).classe;
             contagem.put(c, contagem.containsKey(c) ? contagem.get(c)+1 : 1);
         }
 
         //Localiza a classe com maior contagem
-        int classe = -1;
-        long maxCont = 0;
+        var classe = -1;
+        var maxCont = 0;
         for (var entry : contagem.entrySet()) {
             if (entry.getValue() > maxCont) {
                 classe = entry.getKey();
@@ -69,7 +69,7 @@ public class Knn {
     }
 
     public int[][] classificar(BufferedImage img, int k) {
-        int[][] mapa = new int[img.getWidth()][img.getHeight()];
+        var mapa = new int[img.getWidth()][img.getHeight()];
         for (var y = 0; y < img.getHeight(); y++) {
             for (var x = 0; x < img.getWidth(); x++) {
                 var pixel = RGBtoVec3(img.getRGB(x, y));

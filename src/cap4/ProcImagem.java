@@ -33,10 +33,10 @@ public class ProcImagem {
     }
 
     public static int[] calcularHistograma(BufferedImage img) {
-        int[] histograma = new int[256];
+        var histograma = new int[256];
         for (var y = 0; y < img.getHeight(); y++) {
             for (var x = 0; x < img.getWidth(); x++) {
-                int tom = img.getRGB(x, y) & 0xFF;
+                var tom = img.getRGB(x, y) & 0xFF;
                 histograma[tom]++;
             }
         }
@@ -44,8 +44,8 @@ public class ProcImagem {
     }
 
     public static int[] acumularHistograma(int[] histograma) {
-        int[] acc = new int[histograma.length];
-        for (int i = 1; i < histograma.length; i++) {
+        var acc = new int[histograma.length];
+        for (var i = 1; i < histograma.length; i++) {
             acc[i] += histograma[i] + acc[i-1];
         }
         return acc;
@@ -65,7 +65,7 @@ public class ProcImagem {
 
         //Calcula eq(t) para cada valor na imagem
         var eq = new int[l];
-        for (int t = 0; t < acc.length; t++) {
+        for (var t = 0; t < acc.length; t++) {
             eq[t] = round(((acc[t] - accMin) / (pixels - accMin)) * (l-1));
         }
         return eq;
@@ -84,7 +84,7 @@ public class ProcImagem {
 
         for (var y = 0; y < img.getHeight(); y++) {
             for (var x = 0; x < img.getWidth(); x++) {
-                int t = img.getRGB(x, y) & 0xFF;
+                var t = img.getRGB(x, y) & 0xFF;
                 out.setRGB(x, y, new Color(eq[t], eq[t], eq[t]).getRGB());
             }
         }
@@ -155,9 +155,9 @@ public class ProcImagem {
         float pB = 0, pF;
 
         float maiorVariancia = 0;
-        int melhorLimiar = 0;
+        var melhorLimiar = 0;
 
-        for (int l=0 ; l<256 ; l++) {
+        for (var l = 0; l<256 ; l++) {
             // Não separou nenhum pixel para o fundo?
             pB += histograma[l];
             if (pB == 0) continue;
@@ -169,11 +169,11 @@ public class ProcImagem {
             somaB +=  l * histograma[l];
 
             //Medias do fundo e da frente
-            float mB = somaB / pB;
-            float mF = (soma - somaB) / pF;
+            var mB = somaB / pB;
+            var mF = (soma - somaB) / pF;
 
             // Variância entre classes
-            float varEntre = pB * pF * (mB - mF) * (mB - mF);
+            var varEntre = pB * pF * (mB - mF) * (mB - mF);
 
             // Procura pelo limiar onde a Vec é máxima
             if (varEntre > maiorVariancia) {
@@ -186,7 +186,7 @@ public class ProcImagem {
     }
 
     public static BufferedImage limiarizacao(BufferedImage img) {
-        final float limiar = otsu(img) / 255f;
+        final var limiar = otsu(img) / 255f;
         return processar(img, p ->
             p.x < limiar ? new Vector3() : new Vector3(1)
         );
@@ -197,9 +197,9 @@ public class ProcImagem {
         var minCor = 0;
         var vp = RGBtoVec3(p);
 
-        for (int cor : palheta) {
+        for (var cor : palheta) {
             var vc = RGBtoVec3(cor);
-            float dist = sub(vp, vc).sizeSqr();
+            var dist = sub(vp, vc).sizeSqr();
             if (dist < minDist) {
                 minDist = dist;
                 minCor = cor;
@@ -269,8 +269,8 @@ public class ProcImagem {
     public static BufferedImage processarComHSB(BufferedImage img, UnaryOperator<Vector3> op) {
         var out = new BufferedImage(img.getWidth(), img.getHeight(),
                 BufferedImage.TYPE_INT_RGB);
-        for (int y = 0; y < img.getHeight(); y++) {
-            for (int x = 0; x < img.getWidth(); x++) {
+        for (var y = 0; y < img.getHeight(); y++) {
+            for (var x = 0; x < img.getWidth(); x++) {
                 var pixelIn = RGBtoHSBVec3(img.getRGB(x, y));
                 var pixelOut = op.apply(pixelIn);
                 out.setRGB(x, y, HSBVec3ToRGB(pixelOut));

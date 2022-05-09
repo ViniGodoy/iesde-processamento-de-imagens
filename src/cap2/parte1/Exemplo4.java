@@ -14,8 +14,8 @@ public class Exemplo4 {
     BufferedImage processar(BufferedImage img, UnaryOperator<Color> op) {
         var out = new BufferedImage(img.getWidth(), img.getHeight(),
                 BufferedImage.TYPE_INT_RGB);
-        for (int y = 0; y < img.getHeight(); y++) {
-            for (int x = 0; x < img.getWidth(); x++) {
+        for (var y = 0; y < img.getHeight(); y++) {
+            for (var x = 0; x < img.getWidth(); x++) {
                 var pixelIn = new Color(img.getRGB(x, y));
                 var pixelOut = op.apply(pixelIn);
                 out.setRGB(x, y, pixelOut.getRGB());
@@ -27,9 +27,9 @@ public class Exemplo4 {
 
     BufferedImage brilho(BufferedImage img, float valor) {
         return processar(img, (p) -> {
-            int r = (int)(p.getRed() * valor);
-            int g = (int)(p.getGreen() * valor);
-            int b = (int)(p.getBlue() * valor);
+            var r = (int)(p.getRed() * valor);
+            var g = (int)(p.getGreen() * valor);
+            var b = (int)(p.getBlue() * valor);
 
             return new Color(clamp(r),clamp(g),clamp(b));
         });

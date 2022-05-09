@@ -7,7 +7,6 @@ import org.opencv.videoio.VideoCapture;
 import static org.opencv.core.Core.*;
 import static org.opencv.highgui.HighGui.*;
 import static org.opencv.imgproc.Imgproc.*;
-import static org.opencv.imgcodecs.Imgcodecs.*;
 
 public class Cartoon {
     static {
@@ -45,17 +44,19 @@ public class Cartoon {
             //Exibe o resultado.
             imshow("Resultado", cartoon);
             if (waitKey(33) == 'X') break;
+            if (q == 0) waitKey(1000);
 
             //Salva o quadro em 3s para gerar as imagens presentes no capítulo
-            if (q == 3*30) {
+            /*if (q == 3*30) {
                 imwrite("./imagens/out/cap6/f7_quadro.jpg", quadro);
                 imwrite("./imagens/out/cap6/f7_simples.jpg", simples);
                 imwrite("./imagens/out/cap6/f8_bordas.jpg", bordas);
                 imwrite("./imagens/out/cap6/f8_canny.jpg", canny);
                 imwrite("./imagens/out/cap6/f8_cartoon.jpg", cartoon);
-            }
+            }*/
             q++;
         }
+        waitKey(1000);
         video.release();
         System.exit(0);
     }

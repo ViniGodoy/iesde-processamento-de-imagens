@@ -27,7 +27,7 @@ public class ProcImagem {
         pilha.add(new Coord(x, y));
         while (!pilha.isEmpty()) {
             //1. Retira o pixel a ser processado
-            Coord c = pilha.removeLast();
+            var c = pilha.removeLast();
             //2. Testa se deve processar
             if (deveProcessar(img, mapa, c.x, c.y)) {
                 //3. Rotula o pixel
@@ -64,9 +64,9 @@ public class ProcImagem {
             Color.WHITE.getRGB()
         };
 
-        BufferedImage img = new BufferedImage(mapa.length, mapa[0].length, BufferedImage.TYPE_INT_RGB);
-        for (int x = 0; x < img.getWidth(); x++) {
-            for (int y = 0; y < img.getHeight(); y++) {
+        var img = new BufferedImage(mapa.length, mapa[0].length, BufferedImage.TYPE_INT_RGB);
+        for (var x = 0; x < img.getWidth(); x++) {
+            for (var y = 0; y < img.getHeight(); y++) {
                 if (mapa[x][y] == 0) continue;
                 img.setRGB(x, y, cores[(mapa[x][y]-1) % cores.length]);
             }
@@ -142,7 +142,7 @@ public class ProcImagem {
 
         while (!pilha.isEmpty()) {
             //1. Retira o pixel a ser processado
-            Coord c = pilha.removeLast();
+            var c = pilha.removeLast();
             //2. Testa se deve processar
             if (deveProcessar(img, mapa, c.x, c.y)) {
                 //3. Rotula o pixel
@@ -173,7 +173,7 @@ public class ProcImagem {
 
     public static SegmentosConectados segmentosConectadosEx(BufferedImage img) {
         var mapa = new int[img.getWidth()][img.getHeight()];
-        SegmentosConectados resultado = new SegmentosConectados(mapa);
+        var resultado = new SegmentosConectados(mapa);
 
         var rotulo = 1;
         for (var x = 0; x < img.getWidth(); x++) {

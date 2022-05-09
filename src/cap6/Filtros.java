@@ -65,7 +65,7 @@ public class Filtros {
         imwrite("./imagens/out/cap6/f4_equalizada.jpg", equalizada);
 
         //Calculo do histograma
-        Mat histograma = new Mat();
+        var histograma = new Mat();
         calcHist(List.of(frutas),
             new MatOfInt(0),
             new Mat(),
@@ -92,7 +92,7 @@ public class Filtros {
         //Busca os retângulos
         var poligonos  = new MatOfPoint2f[contornos.size()];
         var retangulos = new RotatedRect[contornos.size()];
-        for (int i = 0; i < contornos.size(); i++) {
+        for (var i = 0; i < contornos.size(); i++) {
             var contorno = new MatOfPoint2f(contornos.get(i).toArray());
             poligonos[i] = new MatOfPoint2f();
             approxPolyDP(contorno, poligonos[i], 3, true);
@@ -132,7 +132,7 @@ public class Filtros {
         var yCrCb = new Mat();
         cvtColor(frutas,yCrCb,COLOR_BGR2YCrCb);
         //2. Separa os canais
-        canais = new ArrayList<Mat>();
+        canais = new ArrayList<>();
         split(yCrCb, canais);
         //3. Equaliza o canal Y. Note que Y=0, Cr=1, Cb=2
         equalizeHist(canais.get(0), canais.get(0));

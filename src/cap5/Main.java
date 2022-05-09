@@ -28,7 +28,7 @@ public class Main {
         var resultadoEx = segmentosConectadosEx(moedas);
         salvar("at1_moedas_conectados", desenharSegmentosEx(resultadoEx));
         System.out.println(resultadoEx.getSegmentos().size() + " segmentos detectados:");
-        for (Segmento s : resultadoEx.getSegmentos()) {
+        for (var s : resultadoEx.getSegmentos()) {
             System.out.println("  " + s);
         }
 
@@ -54,7 +54,7 @@ public class Main {
         salvar("fig6_knn_campo", desenharSegmentos(knn.classificar(campo, 1)));
 
         //Classificacao do campo com kmeans de 4 classes
-        Kmeans kmeans = new Kmeans();
+        var kmeans = new Kmeans();
         System.out.println("Treinando...");
         kmeans.treinar(campo, 10);
         System.out.println("Classificando");
